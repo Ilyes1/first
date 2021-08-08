@@ -5,7 +5,7 @@ const request = require('request')
 const app = express()
 const router = express.Router()
 
-// app.use(express.static('public'))
+app.use(express.static('public'))
 
 router.get('/', (req, res) => {
     res.send('index no problem')
