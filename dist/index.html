@@ -9,8 +9,8 @@
 </head>
 <body>
     
-    <form action="/.netlify/functions/index/weather" method="post">
-        <input type="text" placeholder="city name" name="city">
+    <form action="/.netlify/functions/index/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="image">
         <button type="submit">Get</button>
     </form>
 

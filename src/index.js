@@ -2,6 +2,8 @@ const express = require('express')
 const serverless = require('serverless-http')
 const request = require('request')
 const bodyParser = require('body-parser')
+const multer = require('multer')
+const path = require('path')
 
 const app = express()
 const router = express.Router()
@@ -9,14 +11,22 @@ const router = express.Router()
 app.use(bodyParser.urlencoded({ extended: true }))
 
 router.get('/', (req, res) => {
-    res.send('index no problem')
+    res.send('Hello world!')
 })
 
-router.post('/weather', (req, res) => {
-    const city = req.body.city
-    request(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=923401310fb8f2a8c1dcb3796e756328`, (err, weather) => {
-        res.send(weather)
-    })
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, '../uploads')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname)
+    }
+})
+
+const upload = multer({ storage: storage })
+
+router.post('/upload', upload.single('image'), (req, res) => {
+    res.send('File Uploaded.' + req.file.filename)
 })
 
 app.use('/.netlify/functions/index', router)
