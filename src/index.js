@@ -17,6 +17,7 @@ router.post('/weather', (req, res) => {
     request(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=923401310fb8f2a8c1dcb3796e756328`, (err, weather) => {
         res.send(weather)
     })
+    res.redirect('/')
 })
 
 app.use('/.netlify/functions/index', router)
