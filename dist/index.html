@@ -9,20 +9,23 @@
 </head>
 <body>
     
-    <form action="/.netlify/functions/index/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="image">
-        <button type="submit">Get</button>
+    <form>
+        <input type="text" placeholder="City name...">
+        <button type="submit">Get weather</button>
     </form>
 
 
 
-    <!-- <script>
+    <script>
         $(document).ready(function() {
 
-
+            $('form').submit(function(e) {
+                e.preventDefault()
+                window.location.replace(`/.netlify/functions/index/${$('input').val()}`)
+            })
 
         })
-    </script> -->
+    </script>
 
 </body>
 </html>
