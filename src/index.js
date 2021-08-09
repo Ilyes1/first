@@ -12,14 +12,13 @@ router.get('/', (req, res) => {
     res.send('Hello world!')
 })
 
-router.get('/:city', (req, res) => {
-    request(`http://api.openweathermap.org/data/2.5/weather?q=${req.params.city}&appid=923401310fb8f2a8c1dcb3796e756328`, (err, data) => {
+router.get('/weather', (req, res) => {
+    request(`http://api.openweathermap.org/data/2.5/weather?q=casablanca&appid=923401310fb8f2a8c1dcb3796e756328`, (err, data) => {
         if (err) throw err
         res.send(data)
     })
     res.redirect('/')
 })
-
 
 app.use('/.netlify/functions/index', router)
 

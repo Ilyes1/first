@@ -19,13 +19,8 @@
     <script>
         $(document).ready(function() {
 
-            $('form').submit(function(e) {
-                e.preventDefault()
-                var link = `/.netlify/functions/index/${$('input').val()}`
-                window.location.replace(link)
-                $.get(link, function(data) {
-                    $('body').append(data)
-                })
+            $.get('/.netlify/functions/index/weather', function(data) {
+                $('body').append(data)
             })
 
         })
