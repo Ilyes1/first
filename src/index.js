@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 router.get('/weather', (req, res) => {
     request(`http://api.openweathermap.org/data/2.5/weather?q=casablanca&appid=923401310fb8f2a8c1dcb3796e756328`, (err, data) => {
         if (err) throw err
-        res.send(data)
+        res.send(data.body)
     })
     res.redirect('/')
 })
