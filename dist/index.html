@@ -21,7 +21,11 @@
 
             $('form').submit(function(e) {
                 e.preventDefault()
-                window.location.replace(`/.netlify/functions/index/${$('input').val()}`)
+                var link = `/.netlify/functions/index/${$('input').val()}`
+                window.location.replace(link)
+                $.get(link, function(data) {
+                    $('body').append(data)
+                })
             })
 
         })
